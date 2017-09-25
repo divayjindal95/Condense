@@ -4,6 +4,8 @@ using namespace std;
 
 int char_num=256;
 
+std::map<char, string> lookup_table;
+
 struct node{
 	int freq;
 	struct node *left;
@@ -15,22 +17,19 @@ bool cmp(struct node *n1, struct node *n2){
 	return n1->freq < n2->freq;
 }
 
-void inorder(node *root, std::map<char, string>){
-	if(root->left==NULL && root->right==NULL)
-
-
-}
-
-std::map<char, string> make_table(node *root){
-
-	std::map<char, string> m;
-	node *n=root;
-	while(m.size()!=len){
-			r
+void make_table(node *root, string code){
+	cout<<"hello";
+	if(root->left==NULL && root->right==NULL){
+		lookup_table[root->val]=code;
+		cout<<root->val<<" "<<code;
+		return;
 	}
 
-}
+	if (root->left!=NULL) make_table(root->left,code+'0');
+	if (root->right!=NULL) make_table(root->right,code+'1');
 
+}
+s
 void encode(string s){
 
 	int freq[char_num];	
@@ -41,7 +40,7 @@ void encode(string s){
 	std::vector< struct node* > vec;
 	for(int i=0;i<char_num;i++){
 		if(freq[i]!=0){
-			struct node *n;
+			struct node *n = new struct node;
 			n->left=NULL;
 			n->right=NULL;
 			n->freq=freq[i];
@@ -50,14 +49,17 @@ void encode(string s){
 		}
 	}
 
-	make_heap(vec.begin(),vec.end(), cmp);
 
+	make_heap(vec.begin(),vec.end(), cmp);
 	while(vec.size()!=1){
 		pop_heap(vec.begin(),vec.end());
 		node *n1=vec[vec.size()-1];
 		vec.pop_back();
+
 		pop_heap(vec.begin(),vec.end());
 		node *n2=vec[vec.size()-1];
+		vec.pop_back();
+
 		struct node *n;
 		n->freq=n1->freq+n2->freq;
 		n->left=n1;
@@ -67,7 +69,11 @@ void encode(string s){
 		push_heap(vec.begin(),vec.end());
 	}
 	node *root = vec[0];
-	map<char, string> table = make_table(root);
+	
+	make_table(root,"");
+
+	for(std::map<char, string>::iterator it=lookup_table.begin();it!=lookup_table.end();it++)
+		cout<<it->first<<" " <<it->second<<"\n";
 
 }
 
