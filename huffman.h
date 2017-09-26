@@ -50,7 +50,7 @@ void make_table(node *root, string code){
 
 }
 
-void encode(string s){
+void huffman_encode(string s){
 
 	int freq[char_num];	
 	memset(freq,0,sizeof(freq));
@@ -118,6 +118,7 @@ void encode(string s){
 
 }
 
+/*
 int main(){
 
 	printf("input text\n");
@@ -128,3 +129,4 @@ int main(){
 
 	return 0;
 }
+*/

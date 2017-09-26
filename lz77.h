@@ -5,7 +5,8 @@ using namespace std;
 int LENGTH=100;
 int DISTANCE=100;
 
-void encode(string s){
+std::vector<string> lz77_encode(string s){
+	std::vector<string> buff;
 	for(int i=0;i<s.length();){
 		int length=1,distance=0;
 		for(int j=max(0,i-DISTANCE);j<i;j++){
@@ -19,18 +20,28 @@ void encode(string s){
 			}
 		}
 		if(length>1){
-			cout<<"<"<<length<<","<<distance<<">";
+			string temp;
+			temp="<"+distance;
+			temp+=length;
+			temp+=",";
+			temp+=">";
+			buff.push_back(temp);
+			cout<<"<"<<distance<<","<<length<<">";
 		}
-		else
+		else{
+			buff.push_back(s[i]+"");
 			cout<<s[i];
+		}
 		i=i+length;
 	}
+	return buff;
 }
 
 void decode(string s){
 	return;
 }
 
+/*
 int main(){
 
 	printf("input text\n");
@@ -41,3 +52,4 @@ int main(){
 
 	return 0;
 }
+*/
