@@ -50,11 +50,11 @@ void make_table(node *root, string code){
 
 }
 
-void huffman_encode(string s){
+std::vector<char> huffman_encode(std::vector<char> s){
 
 	int freq[char_num];	
 	memset(freq,0,sizeof(freq));
-	for(int i=0;i<s.length();i++)
+	for(int i=0;i<s.size();i++)
 		freq[s[i]]++;
 
 	std::vector< struct node* > vec;
@@ -109,12 +109,15 @@ void huffman_encode(string s){
 	for(std::map<char, string>::iterator it=lookup_table.begin();it!=lookup_table.end();it++)
 		cout<<it->first<<" " <<it->second<<"\n";
 
-	vector<string> buff;
-	for(int i=0;i<s.length();i++)
-		buff.push_back(lookup_table[s[i]]);
+	vector<char> buff;
+	for(int i=0;i<s.size();i++)
+		for(int j=0;j<lookup_table[s[i]].length();j++)
+			buff.push_back(lookup_table[s[i]][j]);
 
 	for(int i=0;i<buff.size();i++)
 		cout<<buff[i];
+
+	return buff;
 
 }
 

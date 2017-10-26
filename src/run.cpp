@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
-#include "huffman.h"
-#include "lz77.h"
+#include "../include/huffman.h"
+#include "../include/lz77.h"
 
 using namespace std;
 
@@ -10,10 +10,14 @@ int main(){
 	string s;
 	getline(cin,s);
 	
-	vector<string> encoded=lz77_encode(s);
+	vector<char> lz77_encoded=lz77_encode(s);
 
-	cout<<endl<<s.length()<<endl;
-	cout<<sizeof(encoded);
+	cout<<endl<<s.length()<<" "<<lz77_encoded.size()<<endl;
+
+	vector<char> huff_encoded=huffman_encode(lz77_encoded);
+	cout<<huff_encoded.size();
+	int len = huff_encoded.size();
+	bitset<25> b1;
 	return 0;
 }
 

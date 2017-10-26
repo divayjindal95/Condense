@@ -7,13 +7,12 @@ using namespace std;
 bool cmp(int a, int b){
 	return a>b;
 }
-/*
+
 int main()
 {
-
-	std::vector<char> s(1);
-	cin>>s[0];
-	cout<<sizeof(s);
+	bitset<4> b1(10);
+	cout<<b1<<" ";
+	std::vector<bitset<16> > vb;
+	vb.push_back(10);
 	return 0;
 }
-*/
